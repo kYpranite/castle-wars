@@ -1,4 +1,3 @@
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js';
 import { getFirestore, collection, getDocs, getDoc, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js'
 
@@ -47,6 +46,6 @@ async function getTeam(allianceName, teamName){
 
 
 addTeam("Land Animals United", "female lovers8379", 2, 11 ,1 ,"We love females")
-updateTeam("Land Animals United", "female lovers8379", 8)
+const result = await getTeam("Land Animals United", "female lovers8379")
 console.log(result )
 
