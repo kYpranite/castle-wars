@@ -15,6 +15,7 @@ const app = initializeApp(firebaseConfig);
 console.log("test");
 const db = getFirestore(app);
 
+//will overrite existing team, probably use this for updating as well
 async function addTeam( allianceName, teamName, inputHP, inputDamageDealt, inputPeriod, inputSlogan){
     //client side alliance name check to avoid read pricing
     if(!(allianceName == "League of Fowls" || allianceName == "Aquatic Alliance" || allianceName == "Chitin Coalition" || allianceName == "Land Animals United") )
@@ -30,8 +31,8 @@ async function addTeam( allianceName, teamName, inputHP, inputDamageDealt, input
         period: inputPeriod,
         slogan: inputSlogan
     })
-    
 }
+
 async function getTeam(allianceName, teamName){
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
     const teamSnap = await getDoc(teamRef)
@@ -43,7 +44,9 @@ async function getTeam(allianceName, teamName){
     }
     return teamSnap.data()
 }
-addTeam("Land Animals United", "female lovers8379", 2, 11 ,1 ,"We love females")
 
-let result = await getTeam("Land Animals United", "female lovers8379")
+
+addTeam("Land Animals United", "female lovers8379", 2, 11 ,1 ,"We love females")
+updateTeam("Land Animals United", "female lovers8379", 8)
 console.log(result )
+
