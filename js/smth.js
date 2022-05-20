@@ -238,17 +238,19 @@ async function calcAllianceDMG(allianceName){
         return 1
     }
 }
-await calcAllianceHP("Aquatic Alliance");
-addTeam("Land Animals United", "female lovers8379", 2, 110 ,1 ,"We love females")
-const result = await getTeam("Land Animals United", "female lovers8379")
-const result1 = await getAlliance("League of Fowls");
-const result2 = await getTeamsHPOrder(3)
-const result3 = await getTeamsDMGOrder()
 
-await delTeam("Land Animals United", "female lovers8379")
-const result4 = await getTeamsDMGOrder();
-const result5 = await getAlliancesDMGOrder();
-const result6 = await getTeamsInAlliance("Chitin Coalition")
+// testing shid
+// await calcAllianceHP("Aquatic Alliance");
+// addTeam("Land Animals United", "female lovers8379", 2, 110 ,1 ,"We love females")
+// const result = await getTeam("Land Animals United", "female lovers8379")
+// const result1 = await getAlliance("League of Fowls");
+const result2 = await getTeamsHPOrder()
+// const result3 = await getTeamsDMGOrder()
+
+// await delTeam("Land Animals United", "female lovers8379")
+// const result4 = await getTeamsDMGOrder();
+// const result5 = await getAlliancesDMGOrder();
+// const result6 = await getTeamsInAlliance("Chitin Coalition")
 // result2.forEach((doc) => {
 //     console.log(doc.data());
 // })
@@ -261,7 +263,7 @@ const result6 = await getTeamsInAlliance("Chitin Coalition")
 // result5.forEach((doc) => {
 //     console.log(doc.data());
 // })
-result5.forEach((doc) => {
+result2.forEach((doc) => {
     console.log(doc.data());
 })
 
