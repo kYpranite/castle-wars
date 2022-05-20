@@ -74,7 +74,7 @@ console.log("test");
 const db = getFirestore(app);
 
 //will overrite existing team, probably use this for updating as well
-async function addTeam( allianceName, teamName, inputHP, inputDamageDealt, inputPeriod, inputSlogan){
+export async function addTeam( allianceName, teamName, inputHP, inputDamageDealt, inputPeriod, inputSlogan){
     if(!(allianceName == "League of Fowls" || allianceName == "Aquatic Alliance" || allianceName == "Chitin Coalition" || allianceName == "Land Animals United") )
     {
         console.log("alliance not found")
@@ -91,13 +91,13 @@ async function addTeam( allianceName, teamName, inputHP, inputDamageDealt, input
     })
 }
 
-async function delTeam(allianceName, teamName)
+export async function delTeam(allianceName, teamName)
 {
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
     await deleteDoc(teamRef);
 }
 
-async function getTeam(allianceName, teamName){
+export async function getTeam(allianceName, teamName){
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
     const teamSnap = await getDoc(teamRef)
 
@@ -109,7 +109,7 @@ async function getTeam(allianceName, teamName){
     return teamSnap.data()
 }
 
-async function getAlliance(allianceName){
+export async function getAlliance(allianceName){
     const allianceRef = doc(db, "alliances", allianceName);
     const allianceSnap = await getDoc(allianceRef)
 
@@ -121,7 +121,7 @@ async function getAlliance(allianceName){
     return allianceSnap.data();
 }
 
-async function getTeamsInAlliance(allianceName){
+export async function getTeamsInAlliance(allianceName){
     if(!(allianceName == "League of Fowls" || allianceName == "Aquatic Alliance" || allianceName == "Chitin Coalition" || allianceName == "Land Animals United") )
     {
         console.log("alliance not found")
@@ -133,7 +133,7 @@ async function getTeamsInAlliance(allianceName){
 }
 
 //use .docs to get array of documents, or iterate with forEach
-async function getTeamsHPOrder(numTeams = -1){
+export async function getTeamsHPOrder(numTeams = -1){
     let teams
     if(numTeams == -1)
     {
@@ -150,7 +150,7 @@ async function getTeamsHPOrder(numTeams = -1){
     return teamSnapshot; 
 }
 
-async function getTeamsDMGOrder(numTeams = -1){
+export async function getTeamsDMGOrder(numTeams = -1){
     let teams
     if(numTeams == -1)
     {
@@ -167,7 +167,7 @@ async function getTeamsDMGOrder(numTeams = -1){
     return teamSnapshot; 
 }
 
-async function getAlliancesHPOrder(numAlliances = -1){
+export async function getAlliancesHPOrder(numAlliances = -1){
     let alliances
     if(numAlliances == -1)
     {
@@ -184,7 +184,7 @@ async function getAlliancesHPOrder(numAlliances = -1){
     return alliancesSnapshot; 
 }
 
-async function getAlliancesDMGOrder(numAlliances = -1){
+export async function getAlliancesDMGOrder(numAlliances = -1){
     let alliances
     if(numAlliances == -1)
     {
@@ -201,7 +201,7 @@ async function getAlliancesDMGOrder(numAlliances = -1){
     return alliancesSnapshot; 
 }
 
-async function calcAllianceHP(allianceName){
+export async function calcAllianceHP(allianceName){
     let teams = await getTeamsInAlliance(allianceName)
     if(teams != 1)
     {
@@ -220,7 +220,7 @@ async function calcAllianceHP(allianceName){
     }
 }
 
-async function calcAllianceDMG(allianceName){
+export async function calcAllianceDMG(allianceName){
     let teams = await getTeamsInAlliance(allianceName)
     if(teams != 1)
     {
@@ -244,7 +244,7 @@ async function calcAllianceDMG(allianceName){
 // addTeam("Land Animals United", "female lovers8379", 2, 110 ,1 ,"We love females")
 // const result = await getTeam("Land Animals United", "female lovers8379")
 // const result1 = await getAlliance("League of Fowls");
-const result2 = await getTeamsHPOrder()
+// const result2 = await getTeamsHPOrder()
 // const result3 = await getTeamsDMGOrder()
 
 // await delTeam("Land Animals United", "female lovers8379")
@@ -263,7 +263,7 @@ const result2 = await getTeamsHPOrder()
 // result5.forEach((doc) => {
 //     console.log(doc.data());
 // })
-result2.forEach((doc) => {
-    console.log(doc.data());
-})
+// result2.forEach((doc) => {
+//     console.log(doc.data());
+// })
 
