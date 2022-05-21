@@ -18,12 +18,19 @@ addTeam(allianceName, teamName, inputHP, inputDamageDealt, inputPeriod, inputSlo
 - creates a new team with the inputted values
 - returns 1 if the alliance is not found
 
+updateTeam(allianceName, teamName, HP, DMG)
+- increments the HP and DMG of the specified team
+- works with 0(no increment) and negative numbers(decrement)
+- returns 1 if no team found
+
 delTeam(allianceName, teamName)
 - deletes the team named (teamName) that is a member of (allianceName)
+- returns 1 if no team found
 
 getTeam(allianceName, teamName)
 - gets the specified team
 - returns the team document as an object. u can access values with .HP, .damageDealt, etc.
+- returns 1 if no team found
 
 getAlliance(allianceName)
 - gets the specified alliance
@@ -58,7 +65,7 @@ calcAllianceDMG(allianceName)
 
 */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js';
-import { getFirestore, collection, deleteDoc, limit, getDocs, getDoc, setDoc, doc, query, where, collectionGroup, orderBy, updateDoc } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js'
+import { getFirestore, collection, deleteDoc, limit, getDocs, getDoc, increment, setDoc, doc, query, where, collectionGroup, orderBy, updateDoc } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js'
 
 const firebaseConfig = {
   apiKey: "AIzaSyD7zyFs0nG8lHlAa8BKcQaGxbZWlGZ7Hrk",
@@ -82,7 +89,7 @@ export async function addTeam( allianceName, teamName, inputHP, inputDamageDealt
     }
 
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
-    setDoc(teamRef,{
+    await setDoc(teamRef,{
         name: teamName,
         HP: inputHP,
         damageDealt: inputDamageDealt,
@@ -91,11 +98,33 @@ export async function addTeam( allianceName, teamName, inputHP, inputDamageDealt
     })
 }
 
+export async function updateTeam(allianceName, teamName, HP, DMG)
+{
+    const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
+    const teamDoc = await getDoc(teamRef);
+    if(!teamDoc.exists())
+    {
+        return 1
+    }
+    await updateDoc(teamRef, {
+        HP: increment(HP),
+        damageDealt: increment(DMG)
+    })
+
+}
+
 export async function delTeam(allianceName, teamName)
 {
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
+    const teamDoc = await getDoc(teamRef)
+    if(!teamDoc.exists())
+    {
+        return 1
+    }
     await deleteDoc(teamRef);
+           
 }
+// }
 
 export async function getTeam(allianceName, teamName){
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
@@ -210,7 +239,7 @@ export async function calcAllianceHP(allianceName){
             sum += doc.data().HP
         })
         const allianceRef = doc(db, "alliances", allianceName)
-        updateDoc(allianceRef,{
+        await updateDoc(allianceRef,{
             HP: sum
         })
     }
@@ -229,7 +258,7 @@ export async function calcAllianceDMG(allianceName){
             sum += doc.data().damageDealt
         })
         const allianceRef = doc(db, "alliances", allianceName)
-        updateDoc(allianceRef,{
+        await updateDoc(allianceRef,{
             damageDealt: sum
         })
     }

@@ -1,6 +1,9 @@
-import { getAlliancesHPOrder } from './module.js'
+import { getTeam, delTeam, getTeamsInAlliance, getAlliancesHPOrder, getTeamsDMGOrder, updateTeam, addTeam } from './module.js'
 
-const result1 = await getAlliancesHPOrder()
+console.log("test")
+await getTeam("League of Fowls", "nicksuh")
+const result1 = await getTeamsInAlliance("League of Fowls")
 result1.forEach((doc) =>{
     console.log(doc.data())
 })
+
