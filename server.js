@@ -13,6 +13,9 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname + '/pages/smth.html'));
   });
 
+  app.get('/admin', function(req, res){
+    res.sendFile(path.join(__dirname + '/pages/admin.html'));
+  });
 
 server.listen(port, ()=> {
     console.log("listening on *: " + port);

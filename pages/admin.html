@@ -4,9 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/8b73df04b4.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>Teacher Panel</title>
 </head>
 <body>
-    
+    <div class="top-section">
+        <div class="container-fluid top-bar">
+            <div class="brand-name">
+                <h1>Castle Wars</h1>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Username</button>
+                <ul class="dropdown-menu">
+                    <li><a href="" class="dropdown-item">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-section">
+        <div class="vertical-nav bg-white pt-4 px-3" id="sidebar">       
+            <p class="section-title px-3 pb-4 mb-0">MAIN</p>
+            <nav>
+                <div class="nav nav-pills flex-column">
+                    <a class="nav-link active text-dark" id="nav-input-tab" data-bs-toggle="tab" data-bs-target="#input"><i class="fa-solid fa-file-pen"></i> Input Data</a>
+                    <a class="nav-link text-dark" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#edit"><i class="fa-solid fa-keyboard"></i> Edit Data</a>
+                    <a class="nav-link text-dark" id="nav-leader-tab" data-bs-toggle="tab" data-bs-target="#leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
+                </div>
+            </nav>
+        </div>
+            <div class="tab-content">
+                <div class="tab-pane fade show active p-3" id="input">
+
+                </div>
+
+                <div class="tab-pane fade p-3" id="edit">
+                    <form class="navbar-form search-form">
+                        <input type="search" class="form-control" placeholder="Search">
+                    </form>
+                    <div class="results">
+
+                    </div>
+                    <template data-card-template>
+                        <div class="card">
+                            <div class="card-header"></div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Period</th>
+                                            <th scope="col">Alliance</th>
+                                            <th scope="col">DMG Dealt</th>
+                                            <th scope="col">Survived</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="period-data"></td>
+                                            <td id="alliance-data"></td>
+                                            <td id="dmg-data"></td>
+                                            <td id="survived-data"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>                               
+                            </div>
+                        </div>
+                    </template>                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="/js/admin.js"></script>
 </body>
 </html>
