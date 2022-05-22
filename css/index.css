@@ -1,11 +1,17 @@
 body{
     margin:0;
+    color: #1B1B1E;
+    background-color: #D8DBE2;
 }
 
 /* LOGIN BAR */
 
 .dropdown-menu {
     min-width:30vh;
+}
+
+.table{
+    border: #58A4B0;
 }
 
 .dropdown{
@@ -16,16 +22,20 @@ body{
 .brand-name{
     display: flex;
     align-items: center;
+    color: #D8DBE2;
 }
 
 .login-bar {
-    background-color: red;
+    background-color: #58A4B0;
     display: flex;
     justify-content: space-between;
-    padding: 0 3%;
-    height: 8vh;
+    padding: 2% 3%;
+    height: 10vh;
 }
 
+.form-control{
+    margin-bottom: 10%;
+}
 
 /* MAIN SECTION */
 
