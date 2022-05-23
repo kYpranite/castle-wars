@@ -61,27 +61,6 @@ function addCardBehavior(card) {
 }
 
 
-function refreshEditable(container) {
-  const tableRows = container.querySelectorAll("tbody tr");
-  const tableData = container.querySelectorAll("tbody td");
-  console.log(tableRows.length)
-  tableRows.forEach(row => {
-    console.log(row.children[1].textContent)
-    const tableData = row.querySelectorAll("td")
-    tableData.forEach(element => {
-      element.addEventListener('keypress', e => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          element.removeAttribute('contenteditable');
-          if (element.id === "damageDealt" || element.id === "HP") {
-            console.log(row.children[2], teamName, row.children[3].textContent, row.children[2].textContent)
-          }
-        }
-        element.setAttribute('contenteditable', true);
-      })
-    })
-  })
-}
 
 //display all teams
 
@@ -89,7 +68,7 @@ teams.forEach((doc) => {
   addCard(doc.data().name, doc.data().period, doc.data().allianceName, doc.data().damageDealt, doc.data().HP, results);
 });
 
-submitBtn.addEventListener('click', e => {
+submitBtn.addEventListener('click', function(){
   let empty = false;
   inputOptions.forEach((selection) => {
     if (selection.value === '' || selection.value === 0) {
