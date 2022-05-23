@@ -12,7 +12,7 @@
     </head>
     <body>
         <template alliance-row-template>
-            <tr id="row">
+            <tr class="table-row">
                 <th id="rank"></th>
                 <td id="alliance"></td>
                 <td id="damageDealt"></td>
@@ -20,7 +20,7 @@
             </tr>
         </template>
         <template team-row-template>
-            <tr id="row">
+            <tr class="table-row">
                 <th id="rank"></th>
                 <td id="teamName"></td>
                 <td id="alliance"></td>
@@ -58,7 +58,7 @@
                     <label class="btn btn-outline-secondary" for="team-radio">Teams</label>
                 </div>
                 <form class="navbar-form search-form">
-                    <input type="search" class="form-control" placeholder="Search">
+                    <input type="search" class="form-control" id="search-bar" placeholder="Search">
                 </form>
             </div>
             <div class="table-wrap">
