@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8b73df04b4.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/admin.css">
     <title>Teacher Panel</title>
 </head>
+
 <body>
     <div class="top-section">
         <div class="container-fluid top-bar">
@@ -16,7 +19,8 @@
                 <h1>Castle Wars</h1>
             </div>
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Username</button>
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown">Username</button>
                 <ul class="dropdown-menu">
                     <li><a href="" class="dropdown-item">Logout</a></li>
                 </ul>
@@ -24,57 +28,111 @@
         </div>
     </div>
     <div class="main-section">
-        <div class="vertical-nav bg-white pt-4 px-3" id="sidebar">       
+        <div class="vertical-nav bg-white pt-4 px-3" id="sidebar">
             <p class="section-title px-3 pb-4 mb-0">MAIN</p>
             <nav>
                 <div class="nav nav-pills flex-column">
-                    <a class="nav-link active text-dark" id="nav-input-tab" data-bs-toggle="tab" data-bs-target="#input"><i class="fa-solid fa-file-pen"></i> Input Data</a>
-                    <a class="nav-link text-dark" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#edit"><i class="fa-solid fa-keyboard"></i> Edit Data</a>
-                    <a class="nav-link text-dark" id="nav-leader-tab" data-bs-toggle="tab" data-bs-target="#leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
+                    <a class="nav-link active text-dark" id="nav-input-tab" data-bs-toggle="tab"
+                        data-bs-target="#input"><i class="fa-solid fa-file-pen"></i> Input Data</a>
+                    <a class="nav-link text-dark" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#edit"><i
+                            class="fa-solid fa-keyboard"></i> Edit Data</a>
+                    <a class="nav-link text-dark" id="nav-leader-tab" data-bs-toggle="tab"
+                        data-bs-target="#leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
                 </div>
             </nav>
         </div>
-            <div class="tab-content">
-                <div class="tab-pane fade show active p-3" id="input">
-
-                </div>
-                <div class="tab-pane fade p-3" id="edit">
-                    <form class="navbar-form search-form">
-                        <input type="search" class="form-control" id="search-bar" placeholder="Search">
-                    </form>
-                    <div class="results"></div>
-                    <template data-card-template>
-                        <div class="card">
-                            <div class="card-header"></div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Period</th>
-                                            <th scope="col">Alliance</th>
-                                            <th scope="col">DMG Dealt</th>
-                                            <th scope="col">Survived</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="period-data"></td>
-                                            <td id="alliance-data"></td>
-                                            <td id="dmg-data"></td>
-                                            <td id="survived-data"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>                               
-                            </div>
+        <div class="tab-content">
+            <!-- INPUT DATA TAB -->
+            <div class="tab-pane fade show active p-3" id="input">
+                <div class="inputs">
+                    <h1>Enter Alliance</h1>
+                    <form class="row gy-2 gx-3 align-items-center">
+                        <div class="col-auto">
+                            <select class="form-select input-options" id="period-select" >
+                                <option selected value="0">Period</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">4</option>
+                                <option value="3">5</option>
+                                <option value="3">6</option>
+                                <option value="3">7</option>
+                                <option value="3">8</option>
+                            </select>
                         </div>
-                    </template>                   
+                        <div class="col-auto">
+                            <input type="text" class="form-control input-options" id="team-select" placeholder="Team Name" >
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select input-options" id="alliance-select" >
+                                <option selected value="0">Alliance</option>
+                                <option value="Aquatic Alliance">Aquatic Alliance</option>
+                                <option value="Chitin Coalition">Chitin Coalition</option>
+                                <option value="Land Animals United">Land Animals United</option>
+                                <option value="League of Fowls">League of Fowls</option>
+                            </select>
+                        </div>
+                        <div class="col-1">
+                            <input type="number" class="form-control input-options" id="hp-select" placeholder="HP" >
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" class="form-control input-options" id="dmg-select" placeholder="Damage Dealt" >
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control input-options" id="slogan-select" placeholder="Slogan" >
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                        </div>
+                    </form>
                 </div>
+                <div class="results input-container"></div>
             </div>
+            <!-- TEMPLATE FOR CARDS -->
+            <template data-card-template>
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Period</th>
+                                    <th scope="col">Alliance</th>
+                                    <th scope="col">DMG Dealt</th>
+                                    <th scope="col">HP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="period"></td>
+                                    <td id="allianceName"></td>
+                                    <td contenteditable="true" id="damageDealt"></td>
+                                    <td contenteditable="true" id="HP"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <!-- EDIT DATA TAB -->
+
+            <div class="tab-pane fade p-3" id="edit">
+                <form class="navbar-form search-form">
+                    <input type="search" class="form-control" id="search-bar" placeholder="Search">
+                </form>
+                <div class="results edit-container"></div>
+            </div>
+            <!-- LEADERBOARD TAB -->
         </div>
+    </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
     <script src="/js/admin.js" type="module"></script>
 </body>
+
 </html>

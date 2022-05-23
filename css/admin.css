@@ -1,4 +1,4 @@
-.main-section{
+.main-section {
     display: flex;
     justify-content: center;
     margin-top: 2%;
@@ -14,13 +14,13 @@
     height: 10vh;
 }
 
-.brand-name{
+.brand-name {
     display: flex;
     align-items: center;
     color: #D8DBE2;
 }
 
-.dropdown{
+.dropdown {
     display: flex;
     align-items: center;
 }
@@ -37,44 +37,57 @@
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
 }
-  
-.section-title{
-      color: #3535359a;
-      font-weight: bold;
-      letter-spacing: 1px;
+
+.section-title {
+    color: #3535359a;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.nav-link{
-      margin-bottom: 5%;
+.nav-link {
+    margin-bottom: 5%;
 }
 
-.nav-pills .nav-link.active{
+.nav-pills .nav-link.active {
     background-color: #A9BCD0;
 }
 
-.nav-link:hover{
-      background-color: rgb(221, 216, 216);
+.nav-link:hover {
+    background-color: rgb(221, 216, 216);
 }
+
+/* INPUT TEAMS */
+
+.inputs{
+    padding-left: 5%;
+    margin-bottom: 3%;
+}
+
 
 /* EDIT TEAMS */
 
-table{
+table {
     table-layout: fixed;
 }
 
-.results{
+.input-container{
+    margin:auto;
+}
+
+.results {
     width: 70rem;
     border-radius: 1%;
 }
 
-.search-form{
+
+.search-form {
     margin-bottom: 1%;
 }
 
-.card-header{
+.card-header {
     font-size: 1rem;
 }
 
-.card-header{
-    font-weight:bold;
+.card-header {
+    font-weight: bold;
 }
