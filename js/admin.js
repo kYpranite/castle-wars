@@ -1,16 +1,17 @@
 import { getTeam, delTeam, getTeamsInAlliance, getAlliancesHPOrder, getTeamsDMGOrder, updateTeam, addTeam, getTeamsHPOrder } from './module.js'
 
-const cardTemplate = document.querySelector("[data-card-template]")
-const results = document.querySelector(".edit-container")
-const inputedResults = document.querySelector(".input-container")
-const searchBar = document.getElementById("search-bar")
-const submitBtn = document.getElementById("submit-btn")
-const periodVal = document.getElementById("period-select")
-const teamNameTxt = document.getElementById("team-select")
-const sloganTxt = document.getElementById("slogan-select")
-const allianceVal = document.getElementById("alliance-select")
-const dmgVal = document.getElementById("dmg-select")
-const HPVal = document.getElementById("hp-select")
+const cardTemplate = document.querySelector("[data-card-template]");
+const results = document.querySelector(".edit-container");
+const inputedResults = document.querySelector(".input-container");
+const searchBar = document.getElementById("search-bar");
+const submitBtn = document.getElementById("submit-btn");
+const periodVal = document.getElementById("period-select");
+const teamNameTxt = document.getElementById("team-select");
+const sloganTxt = document.getElementById("slogan-select");
+const allianceVal = document.getElementById("alliance-select");
+const dmgVal = document.getElementById("dmg-select");
+const HPVal = document.getElementById("hp-select");
+const leaderboardTab = document.getElementById("nav-leader-tab");
 
 const inputOptions = document.querySelectorAll(".input-options")
 
@@ -32,17 +33,18 @@ function addCard(name, period, allianceName, damageDealt, HP, container) {
   tableData[1].textContent = allianceName;
   tableData[2].textContent = damageDealt;
   tableData[3].textContent = HP;
-  addCardBehavior(card, tableData);
+  addCardBehavior(card);
   container.append(card);
 }
 
 function addCardBehavior(card) {
+  const deleteBtn = card.querySelectorAll(".btn")[0];
+  console.log(deleteBtn);
   const tableData = card.querySelectorAll("tbody td");
   const tableRow = card.querySelector("tbody tr").children;
   const header = card.querySelector(".card-header");
-  let previousDMG=parseFloat(tableRow[2].textContent)
-  let previousHP=parseFloat(tableRow[3].textContent)
-  console.log(previousDMG);
+  let previousDMG=parseFloat(tableRow[2].textContent);
+  let previousHP=parseFloat(tableRow[3].textContent);
   tableData.forEach(element => {
     element.addEventListener('keypress', e => {
       if (e.key === 'Enter') {
@@ -58,6 +60,12 @@ function addCardBehavior(card) {
       element.setAttribute('contenteditable', true);
     })
   })
+
+  deleteBtn.addEventListener('click', function(){
+    delTeam(tableRow[1].textContent, header.textContent);
+    card.classList.add("delete");
+    removeElementsByClass("delete");
+  })
 }
 
 
@@ -72,7 +80,7 @@ submitBtn.addEventListener('click', e=>{
   let empty = false;
   inputOptions.forEach((selection) => {
     if (selection.value === '' || selection.value === 0) {
-      console.log(selection.value)
+      console.log(selection.value);
       empty = true;
     }
   })
@@ -82,8 +90,8 @@ submitBtn.addEventListener('click', e=>{
     empty = false;
     alert("Please fill out all fields!");
   } else {
-    addTeam(allianceVal.value, teamNameTxt.value, parseFloat(HPVal.value), parseFloat(dmgVal.value), periodVal.value, sloganTxt.value)
-    addCard(teamNameTxt.value, periodVal.value, allianceVal.value, parseFloat(dmgVal.value), parseFloat(HPVal.value), inputedResults)
+    addTeam(allianceVal.value, teamNameTxt.value, parseFloat(HPVal.value), parseFloat(dmgVal.value), periodVal.value, sloganTxt.value);
+    addCard(teamNameTxt.value, periodVal.value, allianceVal.value, parseFloat(dmgVal.value), parseFloat(HPVal.value), inputedResults);
     allianceVal.value = 0;
     periodVal.value = 0;
     teamNameTxt.value = '';
@@ -92,6 +100,10 @@ submitBtn.addEventListener('click', e=>{
     sloganTxt.value = '';
   }
   e.preventDefault();
+})
+
+leaderboardTab.addEventListener('click', function(){
+  window.location.href = "/"
 })
 
 searchBar.addEventListener('keypress', e => {

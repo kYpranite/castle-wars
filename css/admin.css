@@ -79,6 +79,12 @@ table {
     border-radius: 1%;
 }
 
+.btn-danger{
+    width:7%;
+    font-weight: bold;
+    margin:auto;
+    margin-bottom: 3%;
+}
 
 .search-form {
     margin-bottom: 1%;
