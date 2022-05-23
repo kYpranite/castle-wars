@@ -48,6 +48,7 @@ function addCardBehavior(card) {
   const tableRow = card.querySelector("tbody tr").children;
   const header = card.querySelector(".card-header");
   let previousDMG=parseFloat(tableRow[2].textContent);
+  console.log(previousDMG)
   let previousHP=parseFloat(tableRow[3].textContent);
   tableData.forEach(element => {
     element.addEventListener('keypress', e => {
@@ -55,12 +56,16 @@ function addCardBehavior(card) {
         e.preventDefault();
         element.removeAttribute('contenteditable');
         if (element.id === "damageDealt" || element.id === "HP") {
+          console.log(previousDMG)
           let dmgToIncrement = parseFloat(tableRow[2].textContent)-previousDMG;
           let hpToIncrement = parseFloat(tableRow[3].textContent)-previousHP;
           //Alliance Name, Team Name, HP, DMG
           updateTeam(tableRow[1].textContent, header.textContent, hpToIncrement, dmgToIncrement);
           calcAllianceHP(tableRow[1].textContent);
           calcAllianceDMG(tableRow[1].textContent);
+          previousHP = parseFloat(tableRow[3].textContent);
+          previousDMG = parseFloat(tableRow[2].textContent);
+          console.log(previousDMG)
         }
       }
       element.setAttribute('contenteditable', true);
