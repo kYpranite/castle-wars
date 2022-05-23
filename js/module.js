@@ -2,6 +2,7 @@
 
 Team document Fields
 - name: string
+- allianceName: string
 - HP: double
 - damageDealt: double
 - period: double
@@ -90,6 +91,7 @@ export async function addTeam( allianceName, teamName, inputHP, inputDamageDealt
     const teamRef = doc(db, "alliances", allianceName, "Teams", teamName)
     await setDoc(teamRef,{
         name: teamName,
+        allianceName: allianceName,
         HP: inputHP,
         damageDealt: inputDamageDealt,
         period: inputPeriod,
