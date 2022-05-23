@@ -2,6 +2,7 @@ import { calcAllianceHP, calcAllianceDMG, delTeam, updateTeam, addTeam, getTeams
 
 const cardTemplate = document.querySelector("[data-card-template]");
 const results = document.querySelector(".edit-container");
+const brand = document.querySelector(".brand-name");
 const inputedResults = document.querySelector(".input-container");
 const searchBar = document.getElementById("search-bar");
 const submitBtn = document.getElementById("submit-btn");
@@ -11,7 +12,7 @@ const sloganTxt = document.getElementById("slogan-select");
 const allianceVal = document.getElementById("alliance-select");
 const dmgVal = document.getElementById("dmg-select");
 const HPVal = document.getElementById("hp-select");
-const leaderboardTab = document.getElementById("nav-leader-tab");
+
 
 const inputOptions = document.querySelectorAll(".input-options")
 
@@ -23,6 +24,10 @@ function removeElementsByClass(className) {
     elements[0].parentNode.removeChild(elements[0]);
   }
 }
+
+brand.addEventListener('click', function(){
+  window.location.href = "/";
+})
 
 function addCard(name, period, allianceName, damageDealt, HP, container) {
   const card = cardTemplate.content.cloneNode(true).children[0];
