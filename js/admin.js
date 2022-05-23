@@ -71,9 +71,6 @@ function addCardBehavior(card) {
     delTeam(tableRow[1].textContent, header.textContent);
     card.classList.add("delete");
     removeElementsByClass("delete");
-    calcAllianceHP(tableRow[1].textContent);
-    calcAllianceDMG(tableRow[1].textContent);
-
   })
 }
 

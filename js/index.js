@@ -1,10 +1,12 @@
-import { getAlliancesDMGOrder, getTeamsDMGOrder } from './module.js'
+import { getAlliancesDMGOrder, getTeamsDMGOrder,  calcAllianceHP, calcAllianceDMG } from './module.js'
 
 const allianceTable = document.querySelector(".table-alliance");
 const allianceTableBody = document.getElementById("table-alliance-body");
 const teamTable = document.querySelector(".table-teams");
 const teamTableBody = document.getElementById("table-team-body");
 const alliances = await getAlliancesDMGOrder();
+console.log(alliances)
+
 const teams = await getTeamsDMGOrder();
 const allianceBtn = document.getElementById("alliance-radio");
 const teamBtn = document.getElementById("team-radio");
@@ -14,6 +16,8 @@ const teamRowTemplate = document.querySelector("[team-row-template]");
 function populateAllianceTable() {
     var counter = 1;
     alliances.forEach(alliance=>{
+        calcAllianceHP(alliance.data().name);
+        calcAllianceDMG(alliance.data().name);
         const row = allianceRowTemplate.content.cloneNode(true).children[0];
         row.children[0].textContent = counter;
         row.children[1].textContent = alliance.data().name;
