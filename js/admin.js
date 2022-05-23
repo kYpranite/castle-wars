@@ -5,29 +5,47 @@ const results = document.querySelector(".results")
 const searchBar = document.getElementById("search-bar")
 const teams = await getTeamsHPOrder();
 
+function removeElementsByClass(className){
+  const elements = document.getElementsByClassName(className);
+  while(elements.length > 0){
+      elements[0].parentNode.removeChild(elements[0]);
+  }
+}
+
 searchBar.addEventListener('keypress', function (e) {
-    if (e.key === 'f') {
+    if (e.key === 'Enter') {
+      removeElementsByClass("card");
       teams.forEach((doc) =>{
-        console.log(doc.data())
+        if ((doc.data().name).includes(searchBar.value)){
+          const card = cardTemplate.content.cloneNode(true).children[0];
+          const header = card.querySelector(".card-header");
+          const tableData = card.querySelector("tbody tr").children;
+          header.textContent=doc.data().name;
+          tableData[0].textContent = doc.data().period;
+          tableData[1].textContent = doc.data().allianceName;
+          tableData[2].textContent = doc.data().damageDealt;
+          tableData[3].textContent = doc.data().HP;
+          results.append(card);
+        }
     })
+    if (results.hasChildNodes() === false){
+      const card = cardTemplate.content.cloneNode(true).children[0];
+      const header = card.querySelector(".card-header");
+      header.textContent = "No results found!";
+      results.append(card);
+    }
+
+    e.preventDefault();
   }
 });
 
-// console.log("test")
 
-// fetch("https://jsonplaceholder.typicode.com/users")
-//     .then(res => res.json())
-//     .then(data => {
-//         data.forEach(user=>{
-//             const card = cardTemplate.content.cloneNode(true).children[0];
-//             const header = card.querySelector(".card-header");
-//             const tableData = card.querySelector("tbody tr").children;
-//             header.textContent=user.name;
-//             tableData[0].textContent = user.id;
-//             tableData[1].textContent = user.website;
-//             tableData[2].textContent = user.username;
-//             tableData[3].textContent = true;
-//             console.log(user)
-//             results.append(card)
-//         })
-//     })
+        // const card = cardTemplate.content.cloneNode(true).children[0];
+        // const header = card.querySelector(".card-header");
+        // const tableData = card.querySelector("tbody tr").children;
+        // header.textContent=doc.data().name;
+        // tableData[0].textContent = doc.data().period;
+        // tableData[1].textContent = doc.data().allianceName;
+        // tableData[2].textContent = doc.data().damageDealt;
+        // tableData[3].textContent = doc.data().HP;;
+        // results.append(card)  
