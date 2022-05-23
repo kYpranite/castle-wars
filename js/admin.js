@@ -1,4 +1,4 @@
-import { getTeam, delTeam, getTeamsInAlliance, getAlliancesHPOrder, getTeamsDMGOrder, updateTeam, addTeam, getTeamsHPOrder } from './module.js'
+import { calcAllianceHP, calcAllianceDMG, delTeam, updateTeam, addTeam, getTeamsHPOrder } from './module.js'
 
 const cardTemplate = document.querySelector("[data-card-template]");
 const results = document.querySelector(".edit-container");
@@ -26,6 +26,8 @@ function removeElementsByClass(className) {
 
 function addCard(name, period, allianceName, damageDealt, HP, container) {
   const card = cardTemplate.content.cloneNode(true).children[0];
+  const deleteBtn = card.querySelectorAll(".btn")[0];
+  deleteBtn.style.display = "none";
   const header = card.querySelector(".card-header");
   const tableData = card.querySelector("tbody tr").children;
   header.textContent = name;
@@ -33,13 +35,15 @@ function addCard(name, period, allianceName, damageDealt, HP, container) {
   tableData[1].textContent = allianceName;
   tableData[2].textContent = damageDealt;
   tableData[3].textContent = HP;
-  addCardBehavior(card);
+  if (container === results){
+    addCardBehavior(card);
+  }
   container.append(card);
 }
 
 function addCardBehavior(card) {
   const deleteBtn = card.querySelectorAll(".btn")[0];
-  console.log(deleteBtn);
+  deleteBtn.style.display = "block";
   const tableData = card.querySelectorAll("tbody td");
   const tableRow = card.querySelector("tbody tr").children;
   const header = card.querySelector(".card-header");
@@ -55,6 +59,8 @@ function addCardBehavior(card) {
           let hpToIncrement = parseFloat(tableRow[3].textContent)-previousHP;
           //Alliance Name, Team Name, HP, DMG
           updateTeam(tableRow[1].textContent, header.textContent, hpToIncrement, dmgToIncrement);
+          calcAllianceHP(tableRow[1].textContent);
+          calcAllianceDMG(tableRow[1].textContent);
         }
       }
       element.setAttribute('contenteditable', true);
@@ -65,6 +71,9 @@ function addCardBehavior(card) {
     delTeam(tableRow[1].textContent, header.textContent);
     card.classList.add("delete");
     removeElementsByClass("delete");
+    calcAllianceHP(tableRow[1].textContent);
+    calcAllianceDMG(tableRow[1].textContent);
+
   })
 }
 
@@ -79,8 +88,7 @@ teams.forEach((doc) => {
 submitBtn.addEventListener('click', e=>{
   let empty = false;
   inputOptions.forEach((selection) => {
-    if (selection.value === '' || selection.value === 0) {
-      console.log(selection.value);
+    if (selection.value === '' || selection.value === '0') {
       empty = true;
     }
   })
@@ -89,8 +97,10 @@ submitBtn.addEventListener('click', e=>{
   if (empty === true) {
     empty = false;
     alert("Please fill out all fields!");
-  } else {
+  }else {
     addTeam(allianceVal.value, teamNameTxt.value, parseFloat(HPVal.value), parseFloat(dmgVal.value), periodVal.value, sloganTxt.value);
+    calcAllianceHP(allianceVal.value);
+    calcAllianceDMG(allianceVal.value);
     addCard(teamNameTxt.value, periodVal.value, allianceVal.value, parseFloat(dmgVal.value), parseFloat(HPVal.value), inputedResults);
     allianceVal.value = 0;
     periodVal.value = 0;
