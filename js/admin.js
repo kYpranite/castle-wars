@@ -1,5 +1,7 @@
 import { calcAllianceHP, calcAllianceDMG, delTeam, updateTeam, addTeam, getTeamsHPOrder } from './module.js'
 
+/* Elements */
+
 const cardTemplate = document.querySelector("[data-card-template]");
 const results = document.querySelector(".edit-container");
 const brand = document.querySelector(".brand-name");
@@ -25,14 +27,17 @@ function removeElementsByClass(className) {
   }
 }
 
+/* redirects user when they click on the castle wars in top left*/
 brand.addEventListener('click', function(){
   window.location.href = "/";
 })
 
 function addCard(name, period, allianceName, damageDealt, HP, container) {
+  /* card object is a copy of the card template. it returns a document fragment so you get the first item of its children to get the element itself*/
   const card = cardTemplate.content.cloneNode(true).children[0];
   const deleteBtn = card.querySelectorAll(".btn")[0];
   deleteBtn.style.display = "none";
+  /* hides delete button on input screen cards */
   const header = card.querySelector(".card-header");
   const tableData = card.querySelector("tbody tr").children;
   header.textContent = name;
@@ -48,31 +53,38 @@ function addCard(name, period, allianceName, damageDealt, HP, container) {
 
 function addCardBehavior(card) {
   const deleteBtn = card.querySelectorAll(".btn")[0];
+  //adds back the delete button
   deleteBtn.style.display = "block";
   const tableData = card.querySelectorAll("tbody td");
   const tableRow = card.querySelector("tbody tr").children;
   const header = card.querySelector(".card-header");
+  // saves the previous dmg and hp so it can know how much to increment by
   let previousDMG=parseFloat(tableRow[2].textContent);
   console.log(previousDMG)
   let previousHP=parseFloat(tableRow[3].textContent);
   tableData.forEach(element => {
+    // makes only damage dealt and HP contenteditable
+    if (element.id === "damageDealt" || element.id === "HP") {
+      element.setAttribute('contenteditable', true);
+    }
     element.addEventListener('keypress', e => {
+      //makes it so that when you press enter when editing, it will stop editing and save the content
       if (e.key === 'Enter') {
         e.preventDefault();
+        //removes the attribute so you are no longer editing
         element.removeAttribute('contenteditable');
-        if (element.id === "damageDealt" || element.id === "HP") {
-          console.log(previousDMG)
-          let dmgToIncrement = parseFloat(tableRow[2].textContent)-previousDMG;
-          let hpToIncrement = parseFloat(tableRow[3].textContent)-previousHP;
-          //Alliance Name, Team Name, HP, DMG
-          updateTeam(tableRow[1].textContent, header.textContent, hpToIncrement, dmgToIncrement);
-          calcAllianceHP(tableRow[1].textContent);
-          calcAllianceDMG(tableRow[1].textContent);
-          previousHP = parseFloat(tableRow[3].textContent);
-          previousDMG = parseFloat(tableRow[2].textContent);
-          console.log(previousDMG)
-        }
+        console.log(previousDMG)
+        let dmgToIncrement = parseFloat(tableRow[2].textContent)-previousDMG;
+        let hpToIncrement = parseFloat(tableRow[3].textContent)-previousHP;
+        //Alliance Name, Team Name, HP, DMG
+        updateTeam(tableRow[1].textContent, header.textContent, hpToIncrement, dmgToIncrement);
+        calcAllianceHP(tableRow[1].textContent);
+        calcAllianceDMG(tableRow[1].textContent);
+        previousHP = parseFloat(tableRow[3].textContent);
+        previousDMG = parseFloat(tableRow[2].textContent);
+        console.log(previousDMG);   
       }
+      //adds back the removed attributes
       element.setAttribute('contenteditable', true);
     })
   })
