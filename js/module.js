@@ -77,7 +77,6 @@ const firebaseConfig = {
   measurementId: "G-XPHFFDE4Z9"
 };
 const app = initializeApp(firebaseConfig);
-console.log("test");
 const db = getFirestore(app);
 
 //will overrite existing team, probably use this for updating as well
