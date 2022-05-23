@@ -114,10 +114,6 @@ submitBtn.addEventListener('click', e=>{
   e.preventDefault();
 })
 
-leaderboardTab.addEventListener('click', function(){
-  window.location.href = "/"
-})
-
 searchBar.addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     removeElementsByClass("card");
