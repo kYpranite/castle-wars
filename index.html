@@ -10,21 +10,38 @@
         <link rel="stylesheet" href="/css/index.css">
     </head>
     <body>
+        <template alliance-row-template>
+            <tr id="row">
+                <th id="rank"></th>
+                <td id="alliance"></td>
+                <td id="damageDealt"></td>
+                <td id="HP"></td>
+            </tr>
+        </template>
+        <template team-row-template>
+            <tr id="row">
+                <th id="rank"></th>
+                <td id="teamName"></td>
+                <td id="alliance"></td>
+                <td id="damageDealt"></td>
+                <td id="survived"></td>
+            </tr>
+        </template>
         <div class="container-fluid login-bar">
             <div class="brand-name">
                 <h1>Castle Wars</h1>
             </div>
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Login</button>
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Login</button>
                 <div class="dropdown-menu">
                     <form class="px-4 py-3">
                       <div class="form-group">
-                        <label for="exampleDropdownFormEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                        <label for="emailForm">Email address</label>
+                        <input type="email" class="form-control" id="emailForm" placeholder="email@email.com">
                       </div>
                       <div class="form-group">
-                        <label for="exampleDropdownFormPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                        <label for="passwordForm">Password</label>
+                        <input type="password" class="form-control" id="passwordForm" placeholder="Password">
                       </div>
                       <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>
@@ -34,49 +51,47 @@
         <div class="main-section">
             <div class="selection-bar">
                 <div class="btn-group" role="group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-secondary" for="btnradio1">Alliances</label>               
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="btnradio2">Teams</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="alliance-radio" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary" for="alliance-radio">Alliances</label>               
+                    <input type="radio" class="btn-check" name="btnradio" id="team-radio" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="team-radio">Teams</label>
                 </div>
                 <form class="navbar-form search-form">
                     <input type="search" class="form-control" placeholder="Search">
                 </form>
             </div>
             <div class="table-wrap">
-                <table class="table table-bordered">
+                <table class="table table-alliance">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Alliance</th>
-                        <th scope="col">HP Dealt</th>
+                        <th scope="col">Damage Dealt</th>
                         <th scope="col">HP Remaining</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-alliance-body">
+                    </tbody>
+                </table>
+                <table class="table table-teams">
+                    <thead>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>League of Fowls</td>
-                        <td>500</td>
-                        <td>69</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Team Name</th>
+                        <th scope="col">Alliance</th>
+                        <th scope="col">Damage Dealt</th>
+                        <th scope="col">Survived?</th>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Nick Sexy Lovers</td>
-                        <td>412</td>
-                        <td>32</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Chitin Alliance</td>
-                        <td>420</td>
-                        <td>132</td>
-                      </tr>
+                    </thead>
+                    <tbody id="table-team-body">
                     </tbody>
                 </table>
             </div>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  </body>
+        <script type="module" src="/js/index.js"></script>
+    </body>
 </html>
 

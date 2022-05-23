@@ -68,7 +68,7 @@ teams.forEach((doc) => {
   addCard(doc.data().name, doc.data().period, doc.data().allianceName, doc.data().damageDealt, doc.data().HP, results);
 });
 
-submitBtn.addEventListener('click', function(){
+submitBtn.addEventListener('click', e=>{
   let empty = false;
   inputOptions.forEach((selection) => {
     if (selection.value === '' || selection.value === 0) {
@@ -82,8 +82,8 @@ submitBtn.addEventListener('click', function(){
     empty = false;
     alert("Please fill out all fields!");
   } else {
-    addTeam(allianceVal.value, teamNameTxt.value, HPVal.value, dmgVal.value, periodVal.value, sloganTxt.value)
-    addCard(teamNameTxt.value, periodVal.value, allianceVal.value, dmgVal.value, HPVal.value, inputedResults)
+    addTeam(allianceVal.value, teamNameTxt.value, parseFloat(HPVal.value), parseFloat(dmgVal.value), periodVal.value, sloganTxt.value)
+    addCard(teamNameTxt.value, periodVal.value, allianceVal.value, parseFloat(dmgVal.value), parseFloat(HPVal.value), inputedResults)
     allianceVal.value = 0;
     periodVal.value = 0;
     teamNameTxt.value = '';

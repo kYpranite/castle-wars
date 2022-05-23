@@ -1,7 +1,6 @@
 body{
     margin:0;
     color: #1B1B1E;
-    background-color: #D8DBE2;
 }
 
 /* LOGIN BAR */
@@ -11,7 +10,8 @@ body{
 }
 
 .table{
-    border: #58A4B0;
+    border: 1px solid#58A4B0;
+    border-radius: 1%;
 }
 
 .dropdown{
@@ -54,6 +54,10 @@ body{
 .table-wrap{
     margin: auto;
     width: 60%;
+}
+
+.table-teams{
+    display:none;
 }
 
 .search-form{
