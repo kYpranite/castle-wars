@@ -120,10 +120,11 @@ submitBtn.addEventListener('click', e=>{
 })
 
 searchBar.addEventListener('keypress', e => {
+  var searchValue = searchBar.value.toUpperCase();
   if (e.key === 'Enter') {
     removeElementsByClass("card");
     teams.forEach((doc) => {
-      if ((doc.data().name).toUpperCase().includes(searchBar.value.toUpperCase())) {
+      if ((doc.data().name).toUpperCase().includes(searchValue) || (doc.data().allianceName).toUpperCase().includes(searchValue)) {
         addCard(doc.data().name, doc.data().period, doc.data().allianceName, doc.data().damageDealt, doc.data().HP, results);
       }
     })

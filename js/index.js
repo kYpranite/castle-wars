@@ -40,7 +40,7 @@ function populateAllianceTable() {
 function populateTeamTable() {
     var counter = 1;
     teams.forEach(team => {
-        if ((team.data().name).toUpperCase().includes(searchBar.value.toUpperCase())) {
+        if ((team.data().name).toUpperCase().includes(searchBar.value.toUpperCase()) || (team.data().allianceName).toUpperCase().includes(searchBar.value.toUpperCase())) {
             const row = teamRowTemplate.content.cloneNode(true).children[0];
             row.children[0].textContent = counter;
             row.children[1].textContent = team.data().name;
